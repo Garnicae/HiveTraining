@@ -1,0 +1,38 @@
+create table pruebas.sales_all_years (
+	RowID smallint, 
+	OrderID int, 
+	OrderDate date, 
+	OrderMonthYear date, 
+	Quantity int, 
+	Quote float, 
+	DiscountPct float, 
+	Rate float, 
+	SaleAmount float, 
+	CustomerName string, 
+	CompanyName string, 
+	Sector string, 
+	Industry string, 
+	City string, 
+	ZipCode string, 
+	State string, 
+	Region string, 
+	ProjectCompleteDate date, 
+	DaystoComplete int, 
+	ProductKey string, 
+	ProductCategory string, 
+	ProductSubCategory string, 
+	Consultant string, 
+	Manager string, 
+	HourlyWage float, 
+	RowCount int, 
+	WageMargin float
+	)
+partitioned by (yr int)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ',' 
+LINES TERMINATED BY '\n'
+stored as textfile;
+
+load data local inpath '/home/cloudera/Downloads/ApacheHiveTraining/exercises/module1_setup_cdh/data/Yearly Sales Data/CogsleyServices-SalesData-2009.csv' into table pruebas.sales_all_years partition(yr=2009)
+
+load data local inpath '/home/cloudera/Downloads/ApacheHiveTraining/exercises/module1_setup_cdh/data/Yearly Sales Data/CogsleyServices-SalesData-2010.csv' into table pruebas.sales_all_years partition(yr=2010)
